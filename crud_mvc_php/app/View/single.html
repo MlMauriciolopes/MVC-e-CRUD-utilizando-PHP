@@ -1,0 +1,38 @@
+			<section>
+				<article>
+					<header>
+						<h2>{{titulo}}</h2>
+					</header>
+
+					<p>{{conteudo}}</p>
+
+					<br>
+					<hr>
+					<br>
+
+					<form method="post" action="http://localhost/crud_mvc_php/?pagina=post&metodo=addComent">
+						<span> Nome: </span> <br>
+						<input type="text" name="nome"> <br><br>
+
+						<span> Mensagem: </span> <br>
+						<textarea name="msg"></textarea> <br><br>
+
+						<input type="hidden" name="id" value="{{id}}">
+
+						<input type="submit" name="" value="Enviar">
+					</form>
+					<br><br>
+
+					<!--tratamento de erro dos comentários-->
+					{% if comentarios == false %}
+						<p>Nenhum comentário encontrado para essa postagem !</p>
+					{% else %}
+						{% for coment in comentarios %} <!--documentação Twig-->
+							<h3>{{coment.nome}}</h3>
+							<p>{{coment.mensagem}}</p>
+							<br>
+						{% endfor %} <!--documentação Twig-->
+					{% endif %}
+
+				</article>
+			</section>
